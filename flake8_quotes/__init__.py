@@ -129,6 +129,9 @@ class QuoteChecker:
         self.docstring_tokens = get_docstring_tokens(prev_tokens, self.tokens)
 
     def __iter__(self):
+        def has_quotes(type, value):
+            return value.startswith(self.config[type]) and value.endswith(self.config[type])
+
         for token in self.tokens:
             if token.type != tokenize.STRING:
                 # ignore non strings
@@ -155,7 +158,7 @@ class QuoteChecker:
             # If our string is a docstring
             # DEV: Docstring quotes must come before multiline quotes as it can as a multiline quote
             if is_docstring:
-                if self.config['good_docstring'] in unprefixed_string:
+                if has_quotes('good_docstring', unprefixed_string):
                     continue
 
                 yield (token.start, 'Q002 Remove bad quotes from docstring')
@@ -165,7 +168,7 @@ class QuoteChecker:
                 #   (""")foo""" -> good (continue)
                 #   '''foo(""")''' -> good (continue)
                 #   (''')foo''' -> possibly bad
-                if self.config['good_multiline'] in unprefixed_string:
+                if has_quotes('good_multiline', unprefixed_string):
                     continue
 
                 # If our string ends with a known good ending, then ignore it

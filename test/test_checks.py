@@ -150,6 +150,7 @@ class MultilineTestChecks(TestCase):
         result = run_flake8(get_absolute_path('data/multiline_string.py'), options)
         self.assertEqual(result, [
             {'col': 5, 'line': 10, 'message': 'Q001 Remove bad quotes from multiline string'},
+            {'col': 5, 'line': 14, 'message': 'Q001 Remove bad quotes from multiline string'},
         ])
 
     def test_singles_alias(self):
@@ -158,6 +159,7 @@ class MultilineTestChecks(TestCase):
         result = run_flake8(get_absolute_path('data/multiline_string.py'), options)
         self.assertEqual(result, [
             {'col': 5, 'line': 10, 'message': 'Q001 Remove bad quotes from multiline string'},
+            {'col': 5, 'line': 14, 'message': 'Q001 Remove bad quotes from multiline string'},
         ])
 
     def test_doubles(self):
@@ -166,6 +168,7 @@ class MultilineTestChecks(TestCase):
         result = run_flake8(get_absolute_path('data/multiline_string.py'), options)
         self.assertEqual(result, [
             {'col': 5, 'line': 1, 'message': 'Q001 Remove bad quotes from multiline string'},
+            {'col': 5, 'line': 5, 'message': 'Q001 Remove bad quotes from multiline string'},
         ])
 
     def test_doubles_alias(self):
@@ -174,6 +177,7 @@ class MultilineTestChecks(TestCase):
         result = run_flake8(get_absolute_path('data/multiline_string.py'), options)
         self.assertEqual(result, [
             {'col': 5, 'line': 1, 'message': 'Q001 Remove bad quotes from multiline string'},
+            {'col': 5, 'line': 5, 'message': 'Q001 Remove bad quotes from multiline string'},
         ])
 
 

@@ -26,7 +26,7 @@ class GetDocstringTokensTests(TestCase):
         with open(get_absolute_path('data/docstring_doubles.py'), 'r') as f:
             docstring_tokens = {t.string for t in get_docstring_tokens([], tokenize.generate_tokens(f.readline))}
         self.assertEqual(docstring_tokens, {
-            '"""\nDouble quotes multiline module docstring\n"""',
+            '"""\nDouble quotes multiline module docstring \'\'\'\n"""',
             '"""\n    Double quotes multiline class docstring\n    """',
             '"""\n        Double quotes multiline function docstring\n        """',
         })
@@ -35,7 +35,7 @@ class GetDocstringTokensTests(TestCase):
         with open(get_absolute_path('data/docstring_singles.py'), 'r') as f:
             docstring_tokens = {t.string for t in get_docstring_tokens([], tokenize.generate_tokens(f.readline))}
         self.assertEqual(docstring_tokens, {
-            "'''\nSingle quotes multiline module docstring\n'''",
+            "'''\nSingle quotes multiline module docstring \"\"\"\n'''",
             "'''\n    Single quotes multiline class docstring\n    '''",
             "'''\n        Single quotes multiline function docstring\n        '''",
         })

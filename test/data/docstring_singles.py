@@ -1,5 +1,5 @@
 '''
-Single quotes multiline module docstring
+Single quotes multiline module docstring """
 '''
 
 '''
